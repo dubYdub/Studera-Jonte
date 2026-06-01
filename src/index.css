@@ -64,66 +64,84 @@ body {
 /* === Title bar === */
 .title-bar {
   text-align: center;
-  background: #0e0a00;
-  border: 1px solid #6a5018;
-  border-radius: 6px;
-  padding: 1.25rem 1rem 1rem;
+  background:
+    radial-gradient(circle at top left, rgba(57, 255, 20, 0.10), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 107, 53, 0.11), transparent 30%),
+    linear-gradient(135deg, #120d00 0%, #211600 52%, #0d0a00 100%);
+  border: 1px solid #5c4614;
+  border-radius: 8px;
+  padding: 1rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 0 24px rgba(200, 160, 50, 0.12), 0 4px 18px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 208, 96, 0.12);
 }
-.title-deco-row {
+.title-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 4px 10px;
+  color: #c9b158;
+  background: rgba(13, 10, 0, 0.72);
+  border: 1px solid #3d3010;
+  border-radius: 999px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(11px, 2.8vw, 13px);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.title-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #39ff14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.65);
+}
+.title-main-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  flex-wrap: nowrap;
+  gap: 12px;
+  margin-top: 0.7rem;
 }
-@keyframes mustacheWiggle {
-  0%, 78%, 100% { transform: rotate(0deg) translateY(0); }
-  81%  { transform: rotate(-8deg) translateY(-4px); }
-  85%  { transform: rotate(8deg)  translateY(-5px); }
-  89%  { transform: rotate(-6deg) translateY(-3px); }
-  93%  { transform: rotate(5deg)  translateY(-4px); }
-  97%  { transform: rotate(-2deg) translateY(-1px); }
-}
-.mustache-wrap {
-  display: inline-flex;
-  transform-origin: bottom center;
-  animation: mustacheWiggle 4s ease-in-out infinite;
-}
-.mustache-right { animation-delay: 0.12s; }
 .title-bar h1 {
-  font-size: clamp(26px, 6.5vw, 46px);
+  font-size: clamp(32px, 8vw, 58px);
+  color: #ffe27a;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-shadow: 0 0 16px rgba(245, 208, 96, 0.35);
+  text-transform: lowercase;
+}
+.title-spark {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #0d0a00;
+  background: #39ff14;
+  font-size: 23px;
+  line-height: 1;
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.38);
+}
+.title-tags {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 0.85rem;
+}
+.title-tags span {
+  padding: 5px 9px;
   color: #f5d060;
-  letter-spacing: 3px;
-  text-shadow: 0 0 12px #f5d060, 0 0 24px rgba(245, 208, 96, 0.4);
-  white-space: nowrap;
-}
-.title-bar p {
-  font-size: clamp(13px, 3.5vw, 18px);
-  color: #c4a830;
-  margin-top: 4px;
-  letter-spacing: 1px;
-}
-.title-for {
-  font-size: clamp(13px, 3.5vw, 17px);
-  color: #8a6018;
-  margin-top: 6px;
-  letter-spacing: 3px;
+  background: #0d0a00;
+  border: 1px solid #3a2e00;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1;
   font-family: 'VT323', monospace;
+  letter-spacing: 0.5px;
 }
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%       { transform: scale(1.4); opacity: 0.85; }
-}
-.heart-pulse {
-  display: inline-block;
-  color: #e05070;
-  animation: heartbeat 1.4s ease infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-.blink { animation: blink 1s step-end infinite; }
-
 /* === Donut chart === */
 .donut-wrap {
   display: flex;
@@ -528,16 +546,32 @@ body {
 
 @media (max-width: 600px) {
   .title-bar {
-    padding: 0.85rem 0.6rem 0.75rem;
-    box-shadow: none;
+    padding: 0.85rem 0.65rem;
+    margin-bottom: 0.65rem;
   }
   .title-bar h1 {
-    font-size: 30px;
-    letter-spacing: 2px;
+    font-size: clamp(31px, 10.5vw, 42px);
   }
-  .title-bar p,
-  .title-for {
-    letter-spacing: 1px;
+  .title-main-row {
+    gap: 8px;
+    margin-top: 0.6rem;
+  }
+  .title-spark {
+    width: 23px;
+    height: 23px;
+    font-size: 19px;
+  }
+  .title-kicker {
+    max-width: 100%;
+    font-size: 11px;
+    gap: 6px;
+  }
+  .title-tags {
+    margin-top: 0.65rem;
+  }
+  .title-tags span {
+    padding: 5px 8px;
+    font-size: 12px;
   }
   .donut-wrap {
     display: block;
