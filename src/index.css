@@ -68,7 +68,6 @@ body {
 /* === Title bar === */
 .title-bar {
   text-align: center;
-  border-bottom: 2px solid #f5d060;
   padding-bottom: 0.75rem;
   margin-bottom: 1rem;
 }
