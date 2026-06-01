@@ -17,7 +17,24 @@ export default function QuestionCard({ question, part, total, status, onMark, is
     }
   }
 
-  const lines = a.split('\n').map(l => l.startsWith('>>') ? '▸' + l.slice(2) : l)
+  const lines = a.split('\n').filter(line => line.trim())
+
+  function parseAnswerLine(line) {
+    const isBullet = line.startsWith('>>')
+    const raw = (isBullet ? line.slice(2) : line).trim()
+    const [first = '', ...rest] = raw.split(' ')
+    const hasIcon = first && /[^\wÅÄÖåäö:]/.test(first)
+    const text = hasIcon ? rest.join(' ') : raw
+    const icon = hasIcon ? first : '›'
+    const colonIndex = text.indexOf(':')
+
+    return {
+      icon,
+      isBullet,
+      lead: colonIndex > 0 ? text.slice(0, colonIndex + 1) : '',
+      body: colonIndex > 0 ? text.slice(colonIndex + 1).trim() : text,
+    }
+  }
 
   return (
     <div
@@ -47,25 +64,28 @@ export default function QuestionCard({ question, part, total, status, onMark, is
       </div>
       <div className="q-text">{q}</div>
 
-      <button className="reveal-btn" onClick={onToggle}>
-        <span>{isOpen ? 'DÖLJ FACIT' : 'VISA FACIT'}</span>
-        <span className="reveal-icon" aria-hidden="true">{isOpen ? '⌃' : '⌄'}</span>
-      </button>
+      <div className={`answer-panel${isOpen ? ' open' : ''}`}>
+        <button className="reveal-btn" onClick={onToggle}>
+          <span>{isOpen ? 'DÖLJ FACIT' : 'VISA FACIT'}</span>
+          <span className="reveal-icon" aria-hidden="true">{isOpen ? '⌃' : '⌄'}</span>
+        </button>
 
-      <div className={`answer-wrap${isOpen ? ' open' : ''}`}>
-        <div className="answer-inner">
-          <div className="answer-box">
-            {lines.map((line, idx) => {
-              const isBullet = line.startsWith('▸')
-              return isBullet ? (
-                <div key={idx} className="answer-bullet">
-                  <span className="bullet-sym">▸</span>
-                  <span>{line.slice(1)}</span>
-                </div>
-              ) : (
-                <div key={idx} className="answer-line">{line}</div>
-              )
-            })}
+        <div className={`answer-wrap${isOpen ? ' open' : ''}`}>
+          <div className="answer-inner">
+            <div className="answer-box">
+              {lines.map((line, idx) => {
+                const parsed = parseAnswerLine(line)
+                return (
+                  <div key={idx} className={`answer-row${parsed.isBullet ? ' bullet' : ''}`}>
+                    <span className="answer-icon" aria-hidden="true">{parsed.icon}</span>
+                    <span className="answer-copy">
+                      {parsed.lead ? <strong>{parsed.lead}</strong> : null}
+                      {parsed.body ? <span>{parsed.lead ? ' ' : ''}{parsed.body}</span> : null}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
