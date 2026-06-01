@@ -13,7 +13,7 @@ export default function DonutChart({ stats }) {
           background: `conic-gradient(
             #39ff14 0% ${knowPct}%,
             #ff6b35 ${knowPct}% ${knowPct + reviewPct}%,
-            #1e1600 ${knowPct + reviewPct}% 100%
+            #2e2400 ${knowPct + reviewPct}% 100%
           )`
         }}
       >

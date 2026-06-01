@@ -67,11 +67,12 @@ body {
 /* === Title bar === */
 .title-bar {
   text-align: center;
-  background: #080600;
-  border-radius: 4px;
-  padding: 1rem 1rem 0.85rem;
+  background: #0e0a00;
+  border: 1px solid #6a5018;
+  border-radius: 6px;
+  padding: 1.25rem 1rem 1rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 24px rgba(200, 160, 50, 0.12), 0 4px 18px rgba(0, 0, 0, 0.7);
 }
 .title-deco-row {
   display: flex;
@@ -95,10 +96,10 @@ body {
 }
 .mustache-right { animation-delay: 0.12s; }
 .title-bar h1 {
-  font-size: clamp(18px, 5vw, 32px);
+  font-size: clamp(26px, 6.5vw, 46px);
   color: #f5d060;
-  letter-spacing: 2px;
-  text-shadow: 0 0 8px #f5d060;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px #f5d060, 0 0 24px rgba(245, 208, 96, 0.4);
   white-space: nowrap;
 }
 .title-bar p {
@@ -133,7 +134,10 @@ body {
   justify-content: center;
   gap: 1.5rem;
   margin-bottom: 1.25rem;
-  padding: 0.25rem 0;
+  padding: 1.25rem;
+  background: #0e0a00;
+  border: 1px solid #3a2e00;
+  border-radius: 6px;
 }
 .donut-ring {
   width: 200px;
