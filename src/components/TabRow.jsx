@@ -34,7 +34,7 @@ export default function TabRow({ currentPart, onSelect, status }) {
                 className="tab-progress-fill"
                 style={{
                   width: `${pct}%`,
-                  background: done ? '#39ff14' : '#f5d060',
+                  background: done ? '#67f35f' : '#67f35f',
                 }}
               />
             </div>

@@ -17,12 +17,6 @@ export default function QuestionCard({ question, part, total, status, onMark, is
     }
   }
 
-  const badge = isKnow
-    ? <span className="badge-know"> [OK]</span>
-    : isRev
-    ? <span className="badge-rev"> [!]</span>
-    : null
-
   const lines = a.split('\n').map(l => l.startsWith('>>') ? '▸' + l.slice(2) : l)
 
   return (
@@ -34,26 +28,28 @@ export default function QuestionCard({ question, part, total, status, onMark, is
         animationDelay: `${cardIndex * 50}ms`,
       }}
     >
-      <div className="q-num">FRAGA {i + 1}/{total}{badge}</div>
+      <div className="q-head">
+        <div className="q-num">FRÅGA {i + 1}/{total}</div>
+        <div className="mark-row">
+          <button
+            className={`mbtn mbtn-know${isKnow ? ' active' : ''}`}
+            onClick={() => handleMark('know')}
+          >
+            ✓ KAN
+          </button>
+          <button
+            className={`mbtn mbtn-rev${isRev ? ' active' : ''}`}
+            onClick={() => handleMark('review')}
+          >
+            ↻ ÖVA
+          </button>
+        </div>
+      </div>
       <div className="q-text">{q}</div>
 
-      <div className="mark-row">
-        <button
-          className={`mbtn mbtn-know${isKnow ? ' active' : ''}`}
-          onClick={() => handleMark('know')}
-        >
-          KAN
-        </button>
-        <button
-          className={`mbtn mbtn-rev${isRev ? ' active' : ''}`}
-          onClick={() => handleMark('review')}
-        >
-          OVA
-        </button>
-      </div>
-
       <button className="reveal-btn" onClick={onToggle}>
-        {isOpen ? '[ DOLJ SVAR ]' : '[ VISA SVAR ]'}
+        <span>{isOpen ? 'DÖLJ FACIT' : 'VISA FACIT'}</span>
+        <span className="reveal-icon" aria-hidden="true">{isOpen ? '⌃' : '⌄'}</span>
       </button>
 
       <div className={`answer-wrap${isOpen ? ' open' : ''}`}>

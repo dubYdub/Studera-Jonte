@@ -1,51 +1,44 @@
 export default function DonutChart({ stats, animated = false }) {
   const { total, know, review } = stats
   const unkn = Math.max(0, total - know - review)
-  const knowPct  = total > 0 ? (know   / total) * 100 : 0
-  const reviewPct = total > 0 ? (review / total) * 100 : 0
+  const knowPct = total > 0 ? (know / total) * 100 : 0
   const displayPct = Math.round(knowPct)
+  const segmentCount = 20
+  const filledSegments = Math.round((displayPct / 100) * segmentCount)
 
   return (
-    <div className="donut-wrap">
-      <div className="donut-desktop">
-        <div
-          className={`donut-ring${animated ? ' pulse' : ''}`}
-          style={{
-            background: `conic-gradient(
-              #39ff14 0% ${knowPct}%,
-              #ff6b35 ${knowPct}% ${knowPct + reviewPct}%,
-              #2e2400 ${knowPct + reviewPct}% 100%
-            )`
-          }}
-        >
-          <div className="donut-hole">
-            <span className="donut-pct">{displayPct}%</span>
-            <span className="donut-sub">{know}/{total}</span>
+    <section className={`progress-panel${animated ? ' pulse' : ''}`} aria-label="Din progress">
+      <div className="progress-main">
+        <div className="progress-label">DIN PROGRESS</div>
+        <div className="progress-meter-row">
+          <div className="progress-segments" aria-hidden="true">
+            {Array.from({ length: segmentCount }, (_, index) => (
+              <span
+                key={index}
+                className={index < filledSegments ? 'filled' : ''}
+              />
+            ))}
           </div>
-        </div>
-        <div className="donut-legend">
-          <div className="legend-row">
-            <span className="leg-dot" style={{ color: '#39ff14' }}>■</span>
-            <span>KAN</span>
-            <span className="leg-n">{know}</span>
-          </div>
-          <div className="legend-row">
-            <span className="leg-dot" style={{ color: '#ff6b35' }}>■</span>
-            <span>OVA MER</span>
-            <span className="leg-n">{review}</span>
-          </div>
-          <div className="legend-row">
-            <span className="leg-dot" style={{ color: '#3a3000' }}>■</span>
-            <span>EJ KLAR</span>
-            <span className="leg-n">{unkn}</span>
-          </div>
+          <div className="progress-percent">{displayPct}%</div>
         </div>
       </div>
-      <div className="donut-mobile">
-        <span><span className="stat-know">■</span><span className="stat-n"> {know}</span> KAN</span>
-        <span><span className="stat-rev">■</span><span className="stat-n"> {review}</span> OVA</span>
-        <span><span className="stat-unk">■</span><span className="stat-n"> {unkn}</span> KVAR</span>
+      <div className="progress-stats">
+        <div className="progress-stat">
+          <span className="stat-dot stat-know" />
+          <span>KAN</span>
+          <strong>{know}</strong>
+        </div>
+        <div className="progress-stat">
+          <span className="stat-dot stat-rev" />
+          <span>ÖVA MER</span>
+          <strong>{review}</strong>
+        </div>
+        <div className="progress-stat">
+          <span className="stat-dot stat-unk" />
+          <span>EJ KLARA</span>
+          <strong>{unkn}</strong>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
