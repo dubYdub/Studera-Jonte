@@ -72,17 +72,41 @@ body {
   padding-bottom: 0.75rem;
   margin-bottom: 1rem;
 }
+.title-deco-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
 .title-bar h1 {
-  font-size: clamp(22px, 6vw, 36px);
+  font-size: clamp(18px, 5vw, 32px);
   color: #f5d060;
   letter-spacing: 2px;
   text-shadow: 0 0 8px #f5d060;
+  white-space: nowrap;
 }
 .title-bar p {
   font-size: clamp(13px, 3.5vw, 18px);
   color: #c4a830;
   margin-top: 4px;
   letter-spacing: 1px;
+}
+.title-for {
+  font-size: clamp(13px, 3.5vw, 17px);
+  color: #8a6018;
+  margin-top: 6px;
+  letter-spacing: 3px;
+  font-family: 'VT323', monospace;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.4); opacity: 0.85; }
+}
+.heart-pulse {
+  display: inline-block;
+  color: #e05070;
+  animation: heartbeat 1.4s ease infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
 .blink { animation: blink 1s step-end infinite; }
