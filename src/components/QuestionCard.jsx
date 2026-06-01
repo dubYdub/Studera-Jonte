@@ -29,10 +29,28 @@ export default function QuestionCard({ question, part, total, status, onMark, is
     <div
       id={`card-${cardIndex}`}
       className={`q-card${flashClass ? ' ' + flashClass : ''}${focused ? ' focused' : ''}`}
-      style={{ animationDelay: `${cardIndex * 50}ms` }}
+      style={{
+        borderLeftColor: isKnow ? '#39ff14' : isRev ? '#ff6b35' : '#4a3810',
+        animationDelay: `${cardIndex * 50}ms`,
+      }}
     >
       <div className="q-num">FRAGA {i + 1}/{total}{badge}</div>
       <div className="q-text">{q}</div>
+
+      <div className="mark-row">
+        <button
+          className={`mbtn mbtn-know${isKnow ? ' active' : ''}`}
+          onClick={() => handleMark('know')}
+        >
+          KAN
+        </button>
+        <button
+          className={`mbtn mbtn-rev${isRev ? ' active' : ''}`}
+          onClick={() => handleMark('review')}
+        >
+          OVA
+        </button>
+      </div>
 
       <button className="reveal-btn" onClick={onToggle}>
         {isOpen ? '[ DOLJ SVAR ]' : '[ VISA SVAR ]'}
@@ -54,21 +72,6 @@ export default function QuestionCard({ question, part, total, status, onMark, is
             })}
           </div>
         </div>
-      </div>
-
-      <div className="mark-row">
-        <button
-          className={`mbtn mbtn-know${isKnow ? ' active' : ''}`}
-          onClick={() => handleMark('know')}
-        >
-          [OK] KAN DETTA
-        </button>
-        <button
-          className={`mbtn mbtn-rev${isRev ? ' active' : ''}`}
-          onClick={() => handleMark('review')}
-        >
-          [!] OVA MER
-        </button>
       </div>
     </div>
   )

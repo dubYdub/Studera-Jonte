@@ -23,10 +23,7 @@ body {
   .retro { border: none; padding: 0.5rem; margin: 0; max-width: 100%; }
   .crt-wrap { border: none; padding: 0.5rem; }
   .title-bar { padding-bottom: 0.5rem; margin-bottom: 0.75rem; }
-  .donut-wrap { gap: 1rem; }
-  .donut-ring { width: 160px; height: 160px; }
-  .donut-hole { inset: 26px; }
-  .donut-pct { font-size: 36px; }
+  .donut-wrap { margin-bottom: 0.75rem; padding: 0.7rem 0.85rem; }
 }
 
 /* === CRT boot animation === */
@@ -139,6 +136,12 @@ body {
   border: 1px solid #3a2e00;
   border-radius: 6px;
 }
+.donut-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
 .donut-ring {
   width: 200px;
   height: 200px;
@@ -147,6 +150,11 @@ body {
   flex-shrink: 0;
   transition: background 0.5s ease;
 }
+@keyframes donutPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(57, 255, 20, 0); }
+  45% { box-shadow: 0 0 28px rgba(57, 255, 20, 0.55); }
+}
+.donut-ring.pulse { animation: donutPulse 0.9s ease; }
 .donut-hole {
   position: absolute;
   inset: 34px;
@@ -187,12 +195,26 @@ body {
 }
 .leg-dot { font-size: 12px; }
 .leg-n { color: #f5d060; margin-left: 4px; font-size: clamp(16px, 3.5vw, 20px); }
+.donut-mobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  color: #8a7020;
+  font-size: 15px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.stat-know { color: #39ff14; }
+.stat-rev { color: #ff6b35; }
+.stat-unk { color: #3a3000; }
+.stat-n { color: #f5d060; }
 
 /* === Nav sections === */
 .nav-section { margin-bottom: 0.5rem; }
 .nav-section--filter {
-  border-top: 1px solid #1a1400;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
   margin-top: 0.25rem;
 }
 .nav-label {
@@ -203,15 +225,23 @@ body {
 }
 
 /* === Tabs === */
-.tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+.tab-strip {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin-bottom: 1rem;
+  padding-bottom: 2px;
+}
+.tab-strip::-webkit-scrollbar {
+  display: none;
 }
 .tab {
-  padding: 10px 8px;
-  border: 2px solid #8a7020;
+  min-width: 156px;
+  flex: 1 0 0;
+  padding: 10px 9px 8px;
+  border: 0;
+  border-bottom: 2px solid #3a2e00;
   font-size: clamp(14px, 4vw, 17px);
   cursor: pointer;
   background: #0d0a00;
@@ -219,16 +249,21 @@ body {
   font-family: 'VT323', monospace;
   letter-spacing: 1px;
   text-align: center;
-  border-bottom: none;
-  transition: background 0.1s, color 0.1s;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
-.tab:nth-child(1) { border-right: 1px solid #8a7020; }
-.tab:nth-child(2) { border-left:  1px solid #8a7020; }
-.tab:nth-child(3) { border-right: 1px solid #8a7020; border-bottom: 2px solid #8a7020; }
-.tab:nth-child(4) { border-left:  1px solid #8a7020; border-bottom: 2px solid #8a7020; }
-.tab.active { background: #f5d060; color: #1a1200; border-color: #f5d060; }
+.tab.active { background: #1a1200; color: #f5d060; border-color: #f5d060; }
 .tab:hover:not(.active) { background: #2a1e00; color: #f5d060; }
 .tab:active { transform: scale(0.97); }
+.tab-title,
+.tab-pct {
+  display: block;
+}
+.tab-pct {
+  margin-top: 2px;
+  color: #7ecf80;
+  font-size: 13px;
+  line-height: 1;
+}
 
 /* === Filter row === */
 .filter-row {
@@ -236,10 +271,11 @@ body {
   gap: 6px;
   margin-bottom: 0.75rem;
 }
-.fbtn {
+.filter-chip {
   flex: 1;
-  padding: 7px 4px;
-  border: 1px solid #3a2e00;
+  padding: 4px 10px;
+  border: 1px solid #2a2000;
+  border-radius: 12px;
   font-size: clamp(11px, 2.8vw, 14px);
   cursor: pointer;
   background: #0d0a00;
@@ -252,23 +288,31 @@ body {
   text-overflow: ellipsis;
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
-.fbtn.active { background: #1a1200; color: #f5d060; border-color: #c4a830; }
-.fbtn:hover  { border-color: #c4a830; color: #c4a830; }
-.fbtn:active { transform: scale(0.97); }
-.fbtn .cnt   { opacity: 0.55; font-size: 0.8em; margin-left: 2px; }
+.filter-chip.active { background: #1a1200; color: #f5d060; border-color: #6a5018; }
+.filter-chip:hover  { border-color: #c4a830; color: #c4a830; }
+.filter-chip:active { transform: scale(0.97); }
+.filter-chip .cnt   { opacity: 0.55; font-size: 0.8em; margin-left: 2px; }
+
+.study-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
 
 /* === Expand all button === */
 .expand-btn {
-  width: 100%;
+  width: auto;
   padding: 10px;
   background: #0d0a00;
-  border: 2px solid #f5d060;
+  border: 1px solid #4a3810;
   font-size: clamp(14px, 4vw, 17px);
   color: #f5d060;
   cursor: pointer;
   font-family: 'VT323', monospace;
   letter-spacing: 1px;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   transition: background 0.15s, box-shadow 0.15s;
   text-shadow: 0 0 6px rgba(245, 208, 96, 0.3);
 }
@@ -300,6 +344,7 @@ body {
   background: #0d0a00;
   position: relative;
   animation: cardIn 0.35s ease both;
+  transition: border-left-color 0.3s ease;
 }
 .q-card::before { display: none; }
 .q-card.flash-know { animation: glowKnow 0.6s ease; }
@@ -375,10 +420,10 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 6px;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .mbtn {
-  padding: 3px 12px;
+  padding: 8px 18px;
   border: 1px solid;
   font-size: clamp(12px, 3vw, 14px);
   cursor: pointer;
@@ -409,7 +454,9 @@ body {
 
 /* === Focused card (keyboard nav) === */
 .q-card.focused {
-  border-left-color: #c4a830;
+  outline: 1px solid #6a5018;
+  outline-offset: -1px;
+  box-shadow: inset 0 0 0 1px rgba(245, 208, 96, 0.08);
 }
 
 /* === Answer bullets === */
@@ -432,7 +479,7 @@ body {
 
 /* === Tab progress bar === */
 .tab-progress {
-  height: 2px;
+  height: 4px;
   background: transparent;
   margin-top: 5px;
   overflow: hidden;
@@ -444,12 +491,13 @@ body {
 
 /* === Keyboard hint === */
 .kb-hint {
-  text-align: center;
+  text-align: right;
   font-size: 11px;
   color: #2a2000;
   letter-spacing: 2px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
   font-family: 'VT323', monospace;
+  white-space: nowrap;
 }
 
 /* === Milestone toast === */
@@ -476,4 +524,20 @@ body {
   pointer-events: none;
   white-space: nowrap;
   animation: toastIn 0.3s ease forwards;
+}
+
+@media (max-width: 600px) {
+  .donut-desktop { display: none; }
+  .donut-mobile { display: flex; }
+  .kb-hint { display: none; }
+  .study-toolbar { align-items: stretch; }
+  .expand-btn { flex: 1; }
+  .mbtn { padding: 10px 20px; min-width: 78px; }
+  .reveal-btn { padding: 12px 8px; }
+}
+
+@media (max-width: 500px) {
+  .tab { min-width: 92px; }
+  .tab-long { display: none; }
+  .tab-short { display: inline; }
 }

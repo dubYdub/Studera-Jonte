@@ -10,10 +10,10 @@ export default function FilterBar({ filter, onSelect, counts }) {
       {FILTERS.map(({ id, label }) => (
         <button
           key={id}
-          className={`fbtn${filter === id ? ' active' : ''}`}
+          className={`filter-chip${filter === id ? ' active' : ''}`}
           onClick={() => onSelect(id)}
         >
-          [ {label} <span className="cnt">({counts[id]})</span> ]
+          {label} <span className="cnt">({counts[id]})</span>
         </button>
       ))}
     </div>

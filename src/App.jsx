@@ -177,7 +177,7 @@ export default function App() {
       <div className="crt-wrap">
         <div className="scanline" />
         <TitleBar />
-        <DonutChart stats={stats} />
+        <DonutChart stats={stats} animated={!!toast} />
         <div className="nav-section">
           <div className="nav-label">▸ AVSNITT</div>
           <TabRow currentPart={currentPart} onSelect={handleTabChange} status={status} />
@@ -186,8 +186,10 @@ export default function App() {
           <div className="nav-label">▸ VISA</div>
           <FilterBar filter={filter} onSelect={setFilter} counts={filterCounts} />
         </div>
-        <ExpandAllBtn allExpanded={allCurrentOpen} onToggle={handleExpandToggle} />
-        <div className="kb-hint">SPACE · K · R · ↑↓</div>
+        <div className="study-toolbar">
+          <ExpandAllBtn allExpanded={allCurrentOpen} onToggle={handleExpandToggle} />
+          <div className="kb-hint">SPACE · K · R · ↑↓</div>
+        </div>
         {filteredQuestions.length === 0 ? (
           <div className="empty">{'>> INGA FRAGOR MATCHAR <<'}</div>
         ) : (
