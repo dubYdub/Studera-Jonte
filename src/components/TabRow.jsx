@@ -1,6 +1,12 @@
 import { data } from '../data'
 
 export default function TabRow({ currentPart, onSelect, status }) {
+  function handleTouchSelect(event, part) {
+    if (event.pointerType !== 'touch') return
+    event.preventDefault()
+    onSelect(part)
+  }
+
   return (
     <div className="tab-strip">
       {Object.keys(data).map((part, index) => {
@@ -13,7 +19,9 @@ export default function TabRow({ currentPart, onSelect, status }) {
         return (
           <button
             key={part}
+            type="button"
             className={`tab${part === currentPart ? ' active' : ''}`}
+            onPointerDown={(event) => handleTouchSelect(event, part)}
             onClick={() => onSelect(part)}
           >
             <span className="tab-title">
