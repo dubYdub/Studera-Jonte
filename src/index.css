@@ -18,6 +18,18 @@ body {
   padding: 1rem;
 }
 
+/* === Mobile: strip borders and padding so content fills the screen === */
+@media (max-width: 600px) {
+  body { padding: 0; background: #1a1200; }
+  .retro { border: none; padding: 0.5rem; margin: 0; max-width: 100%; }
+  .crt-wrap { border: none; padding: 0.5rem; }
+  .title-bar { padding-bottom: 0.5rem; margin-bottom: 0.75rem; }
+  .donut-wrap { gap: 1rem; }
+  .donut-ring { width: 100px; height: 100px; }
+  .donut-hole { inset: 16px; }
+  .donut-pct { font-size: 24px; }
+}
+
 /* === CRT boot animation === */
 @keyframes crtBoot {
   0%   { opacity: 0; filter: brightness(0) blur(4px); }
@@ -184,15 +196,18 @@ body {
 }
 .fbtn {
   flex: 1;
-  padding: 7px 6px;
+  padding: 7px 4px;
   border: 1px solid #3a2e00;
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: clamp(11px, 2.8vw, 14px);
   cursor: pointer;
   background: #0d0a00;
   color: #7a6020;
   font-family: 'VT323', monospace;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
 .fbtn.active { background: #1a1200; color: #f5d060; border-color: #c4a830; }
