@@ -413,7 +413,7 @@ body {
 /* === Tab progress bar === */
 .tab-progress {
   height: 2px;
-  background: rgba(0,0,0,0.4);
+  background: transparent;
   margin-top: 5px;
   overflow: hidden;
 }
@@ -421,7 +421,6 @@ body {
   height: 100%;
   transition: width 0.5s ease;
 }
-.tab.active .tab-progress { background: rgba(26,18,0,0.5); }
 
 /* === Keyboard hint === */
 .kb-hint {
