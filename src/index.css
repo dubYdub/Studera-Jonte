@@ -152,27 +152,27 @@ body {
 
 /* === Filter row === */
 .filter-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 6px;
   margin-bottom: 0.75rem;
 }
 .fbtn {
-  padding: 8px 6px;
-  border: 1px solid #8a7020;
-  font-size: clamp(13px, 3.5vw, 15px);
+  flex: 1;
+  padding: 7px 6px;
+  border: 1px solid #3a2e00;
+  font-size: clamp(12px, 3vw, 14px);
   cursor: pointer;
   background: #0d0a00;
-  color: #c4a830;
+  color: #7a6020;
   font-family: 'VT323', monospace;
   letter-spacing: 1px;
   text-align: center;
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
-.fbtn.active { background: #2a1e00; color: #f5d060; border-color: #f5d060; }
-.fbtn:hover  { border-color: #f5d060; color: #f5d060; }
+.fbtn.active { background: #1a1200; color: #f5d060; border-color: #c4a830; }
+.fbtn:hover  { border-color: #c4a830; color: #c4a830; }
 .fbtn:active { transform: scale(0.97); }
-.fbtn .cnt   { opacity: 0.65; font-size: 0.85em; margin-left: 3px; }
+.fbtn .cnt   { opacity: 0.55; font-size: 0.8em; margin-left: 2px; }
 
 /* === Expand all button === */
 .expand-btn {
@@ -263,20 +263,26 @@ body {
   margin-top: 0.75rem;
 }
 .answer-inner { overflow: hidden; }
+@keyframes answerGlow {
+  0%   { text-shadow: 0 0 12px rgba(126,207,128,0.9), 0 0 24px rgba(57,255,20,0.3); filter: brightness(1.5); }
+  100% { text-shadow: 0 0 2px rgba(126,207,128,0.15); filter: brightness(1); }
+}
 .answer-box {
-  background: #050300;
-  border: 1px solid #3a2e00;
+  background: #010d03;
+  border: 1px solid #1a3820;
+  border-left: 2px solid #2a5530;
   padding: 0.75rem;
   font-size: clamp(14px, 4vw, 17px);
-  color: #e8c84a;
-  line-height: 1.7;
+  color: #7ecf80;
+  line-height: 1.8;
   opacity: 0;
   transform: translateY(-6px);
-  transition: opacity 0.25s ease 0.12s, transform 0.25s ease 0.12s;
+  transition: opacity 0.3s ease 0.12s, transform 0.3s ease 0.12s;
 }
 .answer-wrap.open .answer-box {
   opacity: 1;
   transform: translateY(0);
+  animation: answerGlow 0.9s ease 0.15s both;
 }
 
 /* === Mark row — compact, right-aligned === */

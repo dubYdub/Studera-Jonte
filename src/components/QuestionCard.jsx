@@ -23,7 +23,7 @@ export default function QuestionCard({ question, part, total, status, onMark, is
     ? <span className="badge-rev"> [!]</span>
     : null
 
-  const lines = a.split('\n')
+  const lines = a.split('\n').map(l => l.startsWith('>>') ? '▸' + l.slice(2) : l)
 
   return (
     <div

@@ -1,8 +1,7 @@
 const FILTERS = [
   { id: 'all',      label: 'ALLA' },
-  { id: 'unmarked', label: 'EJ MARKERADE' },
+  { id: 'unmarked', label: 'EJ KLARA' },
   { id: 'review',   label: 'OVA MER' },
-  { id: 'know',     label: 'KAN REDAN' },
 ]
 
 export default function FilterBar({ filter, onSelect, counts }) {
