@@ -1,8 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import { data } from './data'
 import TitleBar from './components/TitleBar'
-import StatsGrid from './components/StatsGrid'
-import ProgressBar from './components/ProgressBar'
+import DonutChart from './components/DonutChart'
 import TabRow from './components/TabRow'
 import FilterBar from './components/FilterBar'
 import ExpandAllBtn from './components/ExpandAllBtn'
@@ -96,10 +95,15 @@ export default function App() {
       <div className="crt-wrap">
         <div className="scanline" />
         <TitleBar />
-        <StatsGrid stats={stats} />
-        <ProgressBar stats={stats} />
-        <TabRow currentPart={currentPart} onSelect={handleTabChange} />
-        <FilterBar filter={filter} onSelect={setFilter} counts={filterCounts} />
+        <DonutChart stats={stats} />
+        <div className="nav-section">
+          <div className="nav-label">▸ AVSNITT</div>
+          <TabRow currentPart={currentPart} onSelect={handleTabChange} />
+        </div>
+        <div className="nav-section nav-section--filter">
+          <div className="nav-label">▸ VISA</div>
+          <FilterBar filter={filter} onSelect={setFilter} counts={filterCounts} />
+        </div>
         <ExpandAllBtn allExpanded={allExpanded} onToggle={handleExpandToggle} />
         {filteredQuestions.length === 0 ? (
           <div className="empty">{'>> INGA FRAGOR MATCHAR <<'}</div>
