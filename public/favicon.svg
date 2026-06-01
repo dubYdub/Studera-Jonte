@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#0d0a00"/>
+
+  <!-- Hair - blonde -->
+  <rect x="8"  y="0"  width="14" height="2" fill="#F5C518"/>
+  <rect x="6"  y="2"  width="18" height="2" fill="#F5C518"/>
+  <rect x="4"  y="4"  width="22" height="2" fill="#F5C518"/>
+  <rect x="4"  y="6"  width="6"  height="2" fill="#F5C518"/>
+  <rect x="20" y="6"  width="6"  height="2" fill="#F5C518"/>
+  <rect x="6"  y="8"  width="2"  height="2" fill="#F5C518"/>
+  <rect x="22" y="8"  width="2"  height="2" fill="#F5C518"/>
+
+  <!-- Skin -->
+  <rect x="10" y="6"  width="10" height="2" fill="#FFCBA4"/>
+  <rect x="8"  y="8"  width="14" height="2" fill="#FFCBA4"/>
+  <rect x="6"  y="10" width="18" height="2" fill="#FFCBA4"/>
+  <rect x="6"  y="12" width="18" height="2" fill="#FFCBA4"/>
+  <rect x="6"  y="14" width="2"  height="2" fill="#FFCBA4"/>
+  <rect x="22" y="14" width="2"  height="2" fill="#FFCBA4"/>
+  <rect x="6"  y="16" width="2"  height="2" fill="#FFCBA4"/>
+  <rect x="12" y="16" width="6"  height="2" fill="#FFCBA4"/>
+  <rect x="22" y="16" width="2"  height="2" fill="#FFCBA4"/>
+  <rect x="6"  y="18" width="18" height="2" fill="#FFCBA4"/>
+  <rect x="8"  y="20" width="14" height="2" fill="#FFCBA4"/>
+  <rect x="10" y="22" width="10" height="2" fill="#FFCBA4"/>
+
+  <!-- Eyes - dark -->
+  <rect x="10" y="10" width="2" height="2" fill="#1a0a00"/>
+  <rect x="18" y="10" width="2" height="2" fill="#1a0a00"/>
+
+  <!-- Mustache - dark golden -->
+  <rect x="8"  y="14" width="14" height="2" fill="#A07830"/>
+  <rect x="8"  y="16" width="4"  height="2" fill="#A07830"/>
+  <rect x="18" y="16" width="4"  height="2" fill="#A07830"/>
+</svg>
