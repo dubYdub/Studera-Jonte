@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function QuestionCard({ question, part, total, status, onMark, isOpen, onToggle, cardIndex }) {
+export default function QuestionCard({ question, part, total, status, onMark, isOpen, onToggle, cardIndex, focused }) {
   const { q, a, i } = question
   const key = `${part}|${i}`
   const isKnow = status[key] === 'know'
@@ -27,7 +27,8 @@ export default function QuestionCard({ question, part, total, status, onMark, is
 
   return (
     <div
-      className={`q-card${flashClass ? ' ' + flashClass : ''}`}
+      id={`card-${cardIndex}`}
+      className={`q-card${flashClass ? ' ' + flashClass : ''}${focused ? ' focused' : ''}`}
       style={{ animationDelay: `${cardIndex * 50}ms` }}
     >
       <div className="q-num">FRAGA {i + 1}/{total}{badge}</div>
@@ -40,12 +41,17 @@ export default function QuestionCard({ question, part, total, status, onMark, is
       <div className={`answer-wrap${isOpen ? ' open' : ''}`}>
         <div className="answer-inner">
           <div className="answer-box">
-            {lines.map((line, idx) => (
-              <span key={idx}>
-                {line}
-                {idx < lines.length - 1 && <br />}
-              </span>
-            ))}
+            {lines.map((line, idx) => {
+              const isBullet = line.startsWith('▸')
+              return isBullet ? (
+                <div key={idx} className="answer-bullet">
+                  <span className="bullet-sym">▸</span>
+                  <span>{line.slice(1)}</span>
+                </div>
+              ) : (
+                <div key={idx} className="answer-line">{line}</div>
+              )
+            })}
           </div>
         </div>
       </div>

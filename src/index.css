@@ -363,3 +363,75 @@ body {
   font-size: clamp(16px, 4vw, 20px);
   letter-spacing: 1px;
 }
+
+/* === Focused card (keyboard nav) === */
+.q-card.focused {
+  border-left-color: #c4a830;
+}
+
+/* === Answer bullets === */
+.answer-line {
+  margin-bottom: 3px;
+  line-height: 1.7;
+}
+.answer-bullet {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  line-height: 1.6;
+}
+.bullet-sym {
+  color: #4a8a50;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* === Tab progress bar === */
+.tab-progress {
+  height: 2px;
+  background: rgba(0,0,0,0.4);
+  margin-top: 5px;
+  overflow: hidden;
+}
+.tab-progress-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+.tab.active .tab-progress { background: rgba(26,18,0,0.5); }
+
+/* === Keyboard hint === */
+.kb-hint {
+  text-align: center;
+  font-size: 11px;
+  color: #2a2000;
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+  font-family: 'VT323', monospace;
+}
+
+/* === Milestone toast === */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d0a00;
+  border: 2px solid #f5d060;
+  color: #f5d060;
+  font-family: 'VT323', monospace;
+  font-size: clamp(16px, 4vw, 22px);
+  letter-spacing: 2px;
+  padding: 12px 28px;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(245, 208, 96, 0.6);
+  box-shadow: 0 0 24px rgba(245, 208, 96, 0.25);
+  z-index: 999;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: toastIn 0.3s ease forwards;
+}
