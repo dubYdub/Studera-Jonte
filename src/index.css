@@ -42,7 +42,6 @@ body {
 .crt-wrap {
   position: relative;
   overflow: hidden;
-  border: 2px solid #8a7020;
   padding: 1rem;
   animation: crtBoot 1.3s ease forwards;
 }
@@ -68,8 +67,11 @@ body {
 /* === Title bar === */
 .title-bar {
   text-align: center;
-  padding-bottom: 0.75rem;
-  margin-bottom: 1rem;
+  background: #080600;
+  border-radius: 4px;
+  padding: 1rem 1rem 0.85rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
 }
 .title-deco-row {
   display: flex;
@@ -78,6 +80,20 @@ body {
   gap: 10px;
   flex-wrap: nowrap;
 }
+@keyframes mustacheWiggle {
+  0%, 78%, 100% { transform: rotate(0deg) translateY(0); }
+  81%  { transform: rotate(-8deg) translateY(-4px); }
+  85%  { transform: rotate(8deg)  translateY(-5px); }
+  89%  { transform: rotate(-6deg) translateY(-3px); }
+  93%  { transform: rotate(5deg)  translateY(-4px); }
+  97%  { transform: rotate(-2deg) translateY(-1px); }
+}
+.mustache-wrap {
+  display: inline-flex;
+  transform-origin: bottom center;
+  animation: mustacheWiggle 4s ease-in-out infinite;
+}
+.mustache-right { animation-delay: 0.12s; }
 .title-bar h1 {
   font-size: clamp(18px, 5vw, 32px);
   color: #f5d060;

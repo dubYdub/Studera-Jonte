@@ -29,9 +29,9 @@ export default function TitleBar() {
   return (
     <div className="title-bar">
       <div className="title-deco-row">
-        <Mustache />
+        <span className="mustache-wrap"><Mustache /></span>
         <h1>*** VARD &amp; OMSORG ***</h1>
-        <Mustache flip />
+        <span className="mustache-wrap mustache-right"><Mustache flip /></span>
       </div>
       <p>STUDIETERMINAL v2.0 <span className="blink">_</span></p>
       <p className="title-for">TILL JONTE <span className="heart-pulse">♥</span></p>
