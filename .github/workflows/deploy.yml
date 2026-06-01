@@ -1,12 +1,17 @@
-name: Deploy to GitHub Pages
+name: Build and deploy
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'index.html'
+      - 'vite.config.js'
+      - 'package*.json'
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,8 +29,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Commit docs to main
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          commit_message: "chore: rebuild site [skip ci]"
+          file_pattern: docs/**
