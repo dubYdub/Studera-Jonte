@@ -86,8 +86,8 @@ body {
   padding: 0.25rem 0;
 }
 .donut-ring {
-  width: 88px;
-  height: 88px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   position: relative;
   flex-shrink: 0;
@@ -95,24 +95,24 @@ body {
 }
 .donut-hole {
   position: absolute;
-  inset: 14px;
+  inset: 20px;
   border-radius: 50%;
   background: #0d0a00;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 2px;
 }
 .donut-pct {
-  font-size: 22px;
+  font-size: 30px;
   color: #f5d060;
   font-family: 'VT323', monospace;
   line-height: 1;
-  text-shadow: 0 0 6px rgba(245, 208, 96, 0.5);
+  text-shadow: 0 0 8px rgba(245, 208, 96, 0.5);
 }
 .donut-sub {
-  font-size: 11px;
+  font-size: 13px;
   color: #7a6020;
   font-family: 'VT323', monospace;
   line-height: 1;
@@ -255,9 +255,10 @@ body {
   letter-spacing: 1px;
 }
 .q-text {
-  font-size: clamp(16px, 4.5vw, 20px);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(14px, 3.8vw, 17px);
   color: #f5d060;
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 0.75rem;
 }
 
@@ -298,7 +299,8 @@ body {
   border: 1px solid #1a3820;
   border-left: 2px solid #2a5530;
   padding: 0.75rem;
-  font-size: clamp(14px, 4vw, 17px);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(13px, 3.5vw, 15px);
   color: #7ecf80;
   line-height: 1.8;
   opacity: 0;
