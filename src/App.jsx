@@ -102,7 +102,7 @@ export default function App() {
         <FilterBar filter={filter} onSelect={setFilter} counts={filterCounts} />
         <ExpandAllBtn allExpanded={allExpanded} onToggle={handleExpandToggle} />
         {filteredQuestions.length === 0 ? (
-          <div className="empty">>> INGA FRAGOR MATCHAR &lt;&lt;</div>
+          <div className="empty">{'>> INGA FRAGOR MATCHAR <<'}</div>
         ) : (
           filteredQuestions.map((q, cardIndex) => (
             <QuestionCard
